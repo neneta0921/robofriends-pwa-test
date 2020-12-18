@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-const Scroll = (props) => {
+type Props = {
+  children?: JSX.Element
+}
+const Scroll = (props: Props) => {
   return (
     <div style={{ border: '1px solid black' }}>
       {props.children}

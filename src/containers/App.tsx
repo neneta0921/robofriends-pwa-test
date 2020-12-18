@@ -33,13 +33,13 @@ class App extends React.Component<IAppProps, IAppState> {
       .then(users => { this.setState({ robots: users }) });
   }
 
-  onSearchChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  onSearchChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
     this.setState({ searchField: event.currentTarget.value })
   }
 
-  render() {
+  render(): JSX.Element {
     const { robots, searchField } = this.state;
-    const filteredRobots: Array<IRobot> = robots.filter(robot => {
+    const filteredRobots = robots.filter(robot => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
     return !robots.length ?
@@ -51,7 +51,7 @@ class App extends React.Component<IAppProps, IAppState> {
             <SearchBox searchChange={this.onSearchChange} />
           </div>
           <Scroll>
-            <CardList robots{filteredRobots} />
+            <CardList robots={filteredRobots} />
           </Scroll>
         </div>
       );
